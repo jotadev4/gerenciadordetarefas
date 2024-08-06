@@ -1,25 +1,91 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quadro</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Board</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #004070;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .board {
+            display: flex;
+            gap: 10px;
+        }
+        .list {
+            background-color: #0d0d0d;
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+            color: white;
+        }
+        .list h3 {
+            margin: 0;
+            padding: 0 0 10px 0;
+            border-bottom: 1px solid #444;
+        }
+        .card {
+            background-color: #333;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            color: white;
+        }
+        .add-list {
+            background-color: #0d0d0d;
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: white;
+        }
+        .add-list input {
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #444;
+            background-color: #222;
+            color: white;
+        }
+        .add-list button {
+            padding: 5px;
+            border-radius: 3px;
+            border: none;
+            background-color: #0079bf;
+            color: white;
+            cursor: pointer;
+        }
+        .add-card {
+            margin-top: 10px;
+            background-color: #444;
+            padding: 5px;
+            border-radius: 3px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div class="board" id="board">
         <div class="list">
-            <h3></h3>
-            <div class="card">'#'</div>
-            <div class="card">'#'</div>
+            <h3>setlist</h3>
+            <div class="card">#1</div>
+            <div class="card">funfa violao voz</div>
             <div class="add-card" onclick="addCard(this)">Adicionar um cartão</div>
         </div>
         <div class="list">
-            <h3></h3>
+            <h3>jadasd</h3>
             <div class="add-card" onclick="addCard(this)">Adicionar um cartão</div>
         </div>
         <div class="list">
-            <h3></h3>
+            <h3>asdlkasd</h3>
             <div class="add-card" onclick="addCard(this)">Adicionar um cartão</div>
         </div>
         <div class="add-list">
@@ -27,6 +93,31 @@
             <button onclick="addList()">Adicionar Lista</button>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        function addCard(button) {
+            const cardText = prompt("Digite o conteúdo do cartão:");
+            if (cardText) {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.textContent = cardText;
+                button.parentNode.insertBefore(card, button);
+            }
+        }
+
+        function addList() {
+            const listName = document.getElementById("newListName").value;
+            if (listName) {
+                const list = document.createElement("div");
+                list.className = "list";
+                list.innerHTML = `
+                    <h3>${listName}</h3>
+                    <div class="add-card" onclick="addCard(this)">Adicionar um cartão</div>
+                `;
+                document.getElementById("board").insertBefore(list, document.querySelector(".add-list"));
+                document.getElementById("newListName").value = "";
+            }
+        }
+    </script>
 </body>
 </html>
