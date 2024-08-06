@@ -9,7 +9,7 @@ function addCard(button) {
 }
 
 function addList() {
-    const listName = document.getElementById("newListName").value;
+    const listName = document.getElementById("novalista").value;
     if (listName) {
         const list = document.createElement("div");
         list.className = "list";
